@@ -19,11 +19,18 @@ $ pyvenv-3.4 venv
 $ source venv/bin/activate
 $ pip install -r requirements.txt
 ... installation process
-
+$ python manage.py syncdb
 ```
 
 ###4.Check if dev server starts as well:  
+4.1 If you want to use django dev server:
 ```
 (venv)$ python manage.py runserver
 ```
+Your app should be on http://localhost:8000
 
+4.2 If you have heroku installed, you can use foreman
+```
+$ foreman start web
+```
+Your app should now be running on [localhost:5000](http://localhost:5000/).
