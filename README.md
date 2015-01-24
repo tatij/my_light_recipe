@@ -34,3 +34,14 @@ Your app should be on http://localhost:8000
 $ foreman start web
 ```
 Your app should now be running on [localhost:5000](http://localhost:5000/).
+
+
+###5.Deploying to Heroku
+
+```
+$ heroku create
+$ git push heroku master
+$ heroku run python manage.py syncdb
+$ heroku open
+```
+
