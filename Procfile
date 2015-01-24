@@ -1,0 +1,1 @@
+web: gunicorn light_recipe.wsgi --log-file -
