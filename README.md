@@ -24,6 +24,6 @@ $ pip install -r requirements.txt
 
 ###4.Check if dev server starts as well:  
 ```
- python light_recipe/manage.py runserver
+ python manage.py runserver
 ```
 
