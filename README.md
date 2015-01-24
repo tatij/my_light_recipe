@@ -24,6 +24,6 @@ $ pip install -r requirements.txt
 
 ###4.Check if dev server starts as well:  
 ```
- python manage.py runserver
+(venv)$ python manage.py runserver
 ```
 
