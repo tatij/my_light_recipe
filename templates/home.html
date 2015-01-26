@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block main %}
+ <h1>Python-social-auth demo</h1>
+
+{% if user and not user.is_anonymous %}
+  <a>Hello, {{ user.get_full_name|default:user.username }}!</a>
+  <br>
+  <a href="/logout">Logout</a>
+
+{% endif %}
+
+
+{% endblock %}
