@@ -1,33 +1,136 @@
 <!DOCTYPE html>
 <html lang="en">
- <head>
-   <meta charset="utf-8">
-   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-   <meta name="viewport" content="width=device-width, initial-scale=1">
-   <title>{% block title %}Third-party Authentication Tutorial{% endblock %}</title>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../favicon.ico">
+
+    <title>Cookbook</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="/static/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="/static/css/starter-template.css" rel="stylesheet">
+
+    <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
+    <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+    <script src="/static/js/ie-emulation-modes-warning.js"></script>
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">Cookbook</a>
+        </div>
+        <div id="navbar" class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="#">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+
+          <ul class="nav navbar-nav pull-right">
+            {% if user and not user.is_anonymous %}
+              <li><a href="/home">Logged as {% if user.get_full_name %} {{ user.get_full_name }}
+                                            {% else %}{{ user.email }}{% endif %}</a></li>
+              <li role="presentation"><a href="/logout">Logout</a></li>
+            {% else %}
+              <li><a href="/home">You are not logged in.</a></li>
+            {% endif %}
+            <!--<li role="presentation"><a href="#">About</a></li>-->
+            <!--<li role="presentation"><a href="#">Contact</a></li>-->
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+
+    <div class="container">
+        <div class="starter-template">
+          {% block main %}{% endblock %}
+      </div>
+
+    </div><!-- /.container -->
 
 
-     <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 
-    <!-- Optional theme -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script src="/static/js/bootstrap.min.js"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="/static/js/ie10-viewport-bug-workaround.js"></script>
+
+     <script src="https://login.persona.org/include.js" type="text/javascript"></script>
+
+    <script type="text/javascript">
+      var signInCallback = function (result) {
+          if (result['error']) {
+            alert('An error happened:', result['error']);
+          } else {
+            $('#code').attr('value', result['code']);
+            $('#at').attr('value', result['access_token']);
+            $('#google-plus').submit();
+          }
+      };
+
+      var modalDialog = function (modalId, modalLinkName, submitHandler) {
+        var $modal;
+        $modal = $(modalId).modal({show: false});
+        $modal.on('click', '.btn-primary', submitHandler || function (event) {
+          event.preventDefault();
+          $modal.find('form').submit();
+        });
+        if (modalLinkName) {
+          $('a[name="' + modalLinkName + '"]').on('click', function (event) {
+            event.preventDefault();
+            $modal.modal('toggle');
+          });
+        }
+        return $modal;
+      };
+
+      $(function () {
+        var $validationModal, $emailRequired;
+        modalDialog('#email-modal', 'email');
+        modalDialog('#username-modal', 'username');
+        $validationModal = modalDialog('#validation-sent-modal');
+        $emailRequired = modalDialog('#email-required-modal');
 
 
+        $('.disconnect-form').on('click', 'a.btn', function (event) {
+          event.preventDefault();
+          $(event.target).closest('form').submit();
+        });
 
-   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-   <!--[if lt IE 9]>
-     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-   <![endif]-->
- </head>
- <body>
-   {% block main %}{% endblock %}
-   <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-   <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <!-- Latest compiled and minified JavaScript -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
- </body>
+        {% if validation_sent %}
+          $validationModal.modal('show');
+        {% endif %}
+
+        {% if email_required %}
+          $emailRequired.modal('show');
+        {% endif %}
+      });
+    </script>
+
+
+  </body>
 </html>

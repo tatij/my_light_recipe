@@ -1,13 +1,14 @@
 {% extends 'base.html' %}
 
 {% block main %}
- <h1>Python-social-auth demo</h1>
 
 {% if user and not user.is_anonymous %}
-  <a>Hello, {{ user.get_full_name|default:user.username }}!</a>
-  <br>
-  <a href="/logout">Logout</a>
 
+   <h1>Welcome to our application, {{ user.get_full_name }}.</h1>
+   <p class="lead">Nice to meet you on our site.</p>
+   <br>
+   <!--<p class="lead">Use this document as a way to quickly start any new project.<br> All you get is this text and a mostly barebones HTML document.</p>-->
+    <img src="http://www.eatlikenoone.com/wp-content/uploads/2012/01/dishwashing.jpg">
 {% endif %}
 
 

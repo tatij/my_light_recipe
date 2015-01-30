@@ -2,4 +2,4 @@
 venv/
 local_settings.py
 *.pyc
-static/*
+light_recipe/static
