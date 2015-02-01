@@ -9,7 +9,7 @@
 <div class="container">
 
     <div class="omb_login">
-    	<h3 class="omb_authTitle">Login or <a href="#">Sign up</a></h3>
+    	<h3 class="omb_authTitle">Login or <a href="/signup">Sign up</a></h3>
 		<div class="row omb_row-sm-offset-3 omb_socialButtons">
     	    <div class="col-xs-4 col-sm-2">
 		        <a href="{% url 'social:begin' 'facebook' %}?next={{ request.path }}" class="btn btn-lg btn-block omb_btn-facebook">
@@ -120,6 +120,37 @@
       </div>
     </div>
 
+     <div id="signup-modal" class="modal fade">
+        <form action="{% url 'social:complete' backend='email' %}" method="POST" role="form">{% csrf_token %}
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Sign up</h4>
+              </div>
+
+              <div class="modal-body">
+                <p>An email address is required.</p>
+					<div class="input-group">
+						<span class="input-group-addon"><i class="fa fa-user"></i></span>
+						<input type="email" class="form-control" id="email" name="email" placeholder="email address">
+					</div>
+					<span class="help-block"></span>
+
+					<div class="input-group">
+						<span class="input-group-addon"><i class="fa fa-lock"></i></span>
+						<input  type="password" class="form-control" name="password" placeholder="Password">
+					</div>
+              </div>
+
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Continue</button>
+              </div>
+            </div>
+          </div>
+        </form>
+    </div>
 
 
 {% endblock %}

@@ -64,6 +64,9 @@
 
     <div class="container">
         <div class="starter-template">
+            
+
+            
           {% block main %}{% endblock %}
       </div>
 
@@ -79,7 +82,7 @@
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <script src="/static/js/ie10-viewport-bug-workaround.js"></script>
 
-     <script src="https://login.persona.org/include.js" type="text/javascript"></script>
+    <script src="https://login.persona.org/include.js" type="text/javascript"></script>
 
     <script type="text/javascript">
       var signInCallback = function (result) {
@@ -109,11 +112,13 @@
       };
 
       $(function () {
-        var $validationModal, $emailRequired;
+        var $validationModal, $emailRequired, $signUpEmail;
         modalDialog('#email-modal', 'email');
         modalDialog('#username-modal', 'username');
+
         $validationModal = modalDialog('#validation-sent-modal');
         $emailRequired = modalDialog('#email-required-modal');
+        $signUpEmail = modalDialog('#signup-modal');
 
 
         $('.disconnect-form').on('click', 'a.btn', function (event) {
@@ -128,6 +133,12 @@
         {% if email_required %}
           $emailRequired.modal('show');
         {% endif %}
+
+        {% if signup %}
+           $signUpEmail.modal('show');
+        {% endif %}
+
+
       });
     </script>
 

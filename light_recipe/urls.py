@@ -16,6 +16,7 @@ urlpatterns = patterns('',
     url(r'^home/$', 'cookbook.views.home'),
     url(r'^done/$', 'cookbook.views.done', name='done'),
     url(r'^logout/$', 'cookbook.views.logout'),
+    url(r'^signup/$', 'cookbook.views.signup', name="signup"),
     url(r'^email-sent/', 'cookbook.views.validation_sent'),
     url(r'^email/$', 'cookbook.views.require_email', name='require_email'),
 )

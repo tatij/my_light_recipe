@@ -42,3 +42,7 @@ def validation_sent(request):
 def require_email(request):
     backend = request.session['partial_pipeline']['backend']
     return context(email_required=True, backend=backend)
+
+@render_to('login.html')
+def signup(request):
+    return context(signup=True)
