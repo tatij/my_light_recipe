@@ -9,6 +9,8 @@ def require_email(strategy, details, user=None, is_new=False, *args, **kwargs):
         return
     elif is_new and not details.get('email'):
         email = strategy.request_data().get('email')
+        if not email and details.get('username'):
+            return
         if email:
             details['email'] = email
         else:
