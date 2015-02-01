@@ -10,6 +10,8 @@ https://docs.djangoproject.com/en/1.7/ref/settings/
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
+import dj_database_url
+
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
 
@@ -191,6 +193,9 @@ EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')
 EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
 EMAIL_FROM = os.environ.get('EMAIL_FROM')
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+
+# Parse database configuration from $DATABASE_URL
+DATABASES['default'] = dj_database_url.config()
 
 try:
     from .local_settings import *
