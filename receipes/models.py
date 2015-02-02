@@ -16,10 +16,6 @@ class Dish(models.Model):
 class DishType(models.Model):    
     name_type = models.CharField(max_length=100)
     
-class Recipe(models.Model):
-    ingredient = models.OneToOneField('Ingredient')
-    dish = models.OneToOneField('Dish')
-    
 class RecipePart(models.Model):
     recipe = models.ForeignKey('Recipe')
     ingredient = models.ForeignKey('Ingredient')
@@ -29,3 +25,6 @@ class RecipePart(models.Model):
 class Ingredient(models.Model):
     name_ingredient = models.CharField(max_length=100)
     note = models.CharField(max_length=1000)
+    
+class Recipe(Ingredient):
+    dish = models.OneToOneField('Dish')
