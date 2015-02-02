@@ -6,8 +6,15 @@ class User(models.Model):
 class Book(models.Model):
     user = models.ForeignKey('User')
     name = models.CharField(max_length=100)
+
+class Ingredient(models.Model):
+    name_ingredient = models.CharField(max_length=100)
+    note = models.CharField(max_length=1000)
+    
+class Recipe(Ingredient):
+    dish = models.ForeignKey('Dish')
         
-class Dish(models.Model):
+class Dish(Recipe):
     book = models.ManyToManyField('Book')
     name = models.CharField(max_length=100)
     description = models.CharField(max_length=1000)
@@ -21,10 +28,3 @@ class RecipePart(models.Model):
     ingredient = models.ForeignKey('Ingredient')
     unit = models.CharField(max_length=100)
     note = models.CharField(max_length=100)
-    
-class Ingredient(models.Model):
-    name_ingredient = models.CharField(max_length=100)
-    note = models.CharField(max_length=1000)
-    
-class Recipe(Ingredient):
-    dish = models.OneToOneField('Dish')
