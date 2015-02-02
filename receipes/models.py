@@ -8,22 +8,17 @@ class Book(models.Model):
     id_book = models.ForeignKey('ConnectDishBook')
     id_user = models.ForeignKey('User')
     name_book = models.CharField(max_length=100)
-    
-class ConnectDishBook(models.Model):
-    id = models.IntegerField(default=0)
-    id_book = models.ForeignKey('Book')
-    id_dish_connect = models.ForeignKey('Dish')
-    
+        
 class Dish(models.Model):
     id_dish_connect = models.ForeignKey('ConnectDishBook')
     id_dish_recipe = models.ForeignKey('Recipe')
     name_dish = models.CharField(max_length=100)
-    id_book = models.IntegerField(default=0)
+    id_book = models.ManyToManyField('Book')
     type_dish = models.ForeignKey('DishType')
     description = models.CharField(max_length=1000)
     
 class DishType(models.Model):
-    id_type = models.ForeignKey('Dish')
+    id_type = models.OneToOneField('Dish')
     name_type = models.CharField(max_length=100)
     
 class Recipe(models.Model):
