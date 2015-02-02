@@ -2,7 +2,7 @@ from django.shortcuts import render_to_response, redirect, render
 from django.contrib.auth import logout as auth_logout
 from django.contrib.auth.decorators import login_required
 # from django.template.context import RequestContext
-from cookbook.decorators import render_to
+from annoying.decorators import render_to
 
 def context(**extra):
     return dict(**extra)
