@@ -4,7 +4,7 @@ class User(models.Model):
     name = models.CharField(max_length=100)
 
 class Book(models.Model):
-    user = models.ForeignKey('User')
+    user = models.ForeignKey('USER_MODEL')
     name = models.CharField(max_length=100)
 
 class Ingredient(models.Model):
@@ -12,7 +12,7 @@ class Ingredient(models.Model):
     note = models.CharField(max_length=1000)
     
 class Recipe(Ingredient):
-    dish = models.ForeignKey('Dish')
+    pass
         
 class Dish(Recipe):
     book = models.ManyToManyField('Book')
