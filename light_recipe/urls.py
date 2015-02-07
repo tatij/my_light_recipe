@@ -19,6 +19,7 @@ urlpatterns = patterns('',
     url(r'^signup/$', 'cookbook.views.signup', name="signup"),
     url(r'^email-sent/', 'cookbook.views.validation_sent'),
     url(r'^email/$', 'cookbook.views.require_email', name='require_email'),
+    url(r'^add_dish/$', 'cookbook.views.add_dish', name='add_dish'),
 )
 
 if settings.DEBUG:

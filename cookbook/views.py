@@ -3,6 +3,8 @@ from django.contrib.auth import logout as auth_logout
 from django.contrib.auth.decorators import login_required
 # from django.template.context import RequestContext
 from annoying.decorators import render_to
+from . forms import FoodStepForm
+
 
 def context(**extra):
     return dict(**extra)
@@ -46,3 +48,10 @@ def require_email(request):
 @render_to('login.html')
 def signup(request):
     return context(signup=True)
+
+
+@login_required
+@render_to('add_dish.html')
+def add_dish(request):
+    form = FoodStepForm()
+    return context(form=form)
