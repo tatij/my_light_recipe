@@ -17,6 +17,7 @@ class Dish(Ingredient):
     verbose_name = models.CharField(max_length=100)
     description = models.CharField(max_length=1000)
     type = models.ForeignKey('DishType')
+    photo = models.ImageField(null=True, blank=True)
 
 
 class DishType(models.Model):    
