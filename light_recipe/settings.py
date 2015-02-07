@@ -39,6 +39,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+	'recipes',
     'cookbook',
     'annoying',
     'social.apps.django_app.default',
