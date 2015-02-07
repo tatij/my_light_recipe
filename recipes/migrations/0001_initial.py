@@ -13,9 +13,19 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.CreateModel(
+            name='Action',
+            fields=[
+                ('id', models.AutoField(primary_key=True, auto_created=True, serialize=False, verbose_name='ID')),
+                ('name', models.CharField(max_length=128)),
+            ],
+            options={
+            },
+            bases=(models.Model,),
+        ),
+        migrations.CreateModel(
             name='Book',
             fields=[
-                ('id', models.AutoField(verbose_name='ID', primary_key=True, serialize=False, auto_created=True)),
+                ('id', models.AutoField(primary_key=True, auto_created=True, serialize=False, verbose_name='ID')),
                 ('name', models.CharField(max_length=100)),
                 ('user', models.ForeignKey(to=settings.AUTH_USER_MODEL)),
             ],
@@ -26,8 +36,9 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='DishType',
             fields=[
-                ('id', models.AutoField(verbose_name='ID', primary_key=True, serialize=False, auto_created=True)),
+                ('id', models.AutoField(primary_key=True, auto_created=True, serialize=False, verbose_name='ID')),
                 ('name_type', models.CharField(max_length=100)),
+                ('parent', models.ForeignKey(to='recipes.DishType')),
             ],
             options={
             },
@@ -36,7 +47,7 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Ingredient',
             fields=[
-                ('id', models.AutoField(verbose_name='ID', primary_key=True, serialize=False, auto_created=True)),
+                ('id', models.AutoField(primary_key=True, auto_created=True, serialize=False, verbose_name='ID')),
                 ('name', models.CharField(max_length=100)),
                 ('note', models.CharField(max_length=1000)),
             ],
@@ -47,7 +58,7 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Dish',
             fields=[
-                ('ingredient_ptr', models.OneToOneField(primary_key=True, serialize=False, parent_link=True, to='recipes.Ingredient', auto_created=True)),
+                ('ingredient_ptr', models.OneToOneField(primary_key=True, parent_link=True, to='recipes.Ingredient', auto_created=True, serialize=False)),
                 ('verbose_name', models.CharField(max_length=100)),
                 ('description', models.CharField(max_length=1000)),
                 ('book', models.ManyToManyField(to='recipes.Book')),
@@ -58,9 +69,20 @@ class Migration(migrations.Migration):
             bases=('recipes.ingredient',),
         ),
         migrations.CreateModel(
+            name='RecipeAction',
+            fields=[
+                ('id', models.AutoField(primary_key=True, auto_created=True, serialize=False, verbose_name='ID')),
+                ('comment', models.TextField()),
+                ('action', models.ForeignKey(to='recipes.Action')),
+            ],
+            options={
+            },
+            bases=(models.Model,),
+        ),
+        migrations.CreateModel(
             name='RecipePart',
             fields=[
-                ('id', models.AutoField(verbose_name='ID', primary_key=True, serialize=False, auto_created=True)),
+                ('id', models.AutoField(primary_key=True, auto_created=True, serialize=False, verbose_name='ID')),
                 ('unit', models.CharField(max_length=100)),
                 ('note', models.CharField(max_length=100)),
                 ('amount', models.IntegerField()),
@@ -70,5 +92,11 @@ class Migration(migrations.Migration):
             options={
             },
             bases=(models.Model,),
+        ),
+        migrations.AddField(
+            model_name='recipeaction',
+            name='recipe',
+            field=models.ForeignKey(to='recipes.RecipePart'),
+            preserve_default=True,
         ),
     ]
