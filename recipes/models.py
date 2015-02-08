@@ -4,12 +4,13 @@ from django.conf import settings
 
 class Book(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL)
-    name = models.CharField(max_length=100)
+    name = models.CharField(max_length=128)
 
 
 class Ingredient(models.Model):
-    name = models.CharField(max_length=100)
-    note = models.CharField(max_length=1000)
+    name = models.CharField(max_length=128)
+    note = models.CharField(max_length=1024,
+                            blank=True, null=True)
 
     def __str__(self):
         return self.name
@@ -17,8 +18,9 @@ class Ingredient(models.Model):
 
 class Dish(Ingredient):
     book = models.ManyToManyField('Book', null=True, blank=True)
-    verbose_name = models.CharField(max_length=100)
-    description = models.CharField(max_length=1000)
+    verbose_name = models.CharField(max_length=128)
+    description = models.CharField(max_length=1024,
+                                   blank=True, null=True)
     type = models.ForeignKey('DishType')
     photo = models.ImageField(null=True, blank=True)
 
@@ -27,7 +29,7 @@ class Dish(Ingredient):
 
 
 class DishType(models.Model):    
-    name_type = models.CharField(max_length=100)
+    name_type = models.CharField(max_length=128)
     parent = models.ForeignKey('self', null=True,
                                blank=True)
 
@@ -39,8 +41,9 @@ class RecipePart(models.Model):
     recipe = models.ForeignKey('Ingredient',
                                related_name='recipe_component')
     ingredient = models.ForeignKey('Ingredient')
-    unit = models.CharField(max_length=100)
-    note = models.CharField(max_length=100)
+    unit = models.CharField(max_length=128)
+    note = models.CharField(max_length=128,
+                            blank=True, null=True)
     amount = models.IntegerField()
 
     def __str__(self):
@@ -57,4 +60,9 @@ class Action(models.Model):
 class RecipeAction(models.Model):
     recipe = models.ForeignKey('RecipePart')
     action = models.ForeignKey('Action')
-    comment = models.TextField()
+    comment = models.TextField(blank=True, null=True)
+
+    def __str__(self):
+        return "RecipeAction: %s + %s" % (
+            self.recipe.ingredient.name,
+            self.action.name)

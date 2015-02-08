@@ -1,4 +1,4 @@
-<li> {{ingredient.ingredient}}; Unit: {{ ingredient.unit }}; Amount: {{ ingredient.amount }} Action: {% for action in ingredient.actions %} {{ action }}, {% endfor %}
+<li> {{ingredient.ingredient}} ({{ ingredient.amount }} {{ ingredient.unit }}) - {% for action in ingredient.actions %} {{ action }}, {% endfor %}
     {%if ingredient.components %}
         <ul>
          {%for ing in ingredient.components %}
