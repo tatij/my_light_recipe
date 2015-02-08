@@ -9,3 +9,6 @@ cookbook/static/css/bootstrap.min.css
 cookbook/static/css/bootstrap-theme.css
 cookbook/static/css/bootstrap-theme.css.map
 cookbook/static/css/bootstrap-theme.min.css
+cookbook/static/js/bootstrap.js
+cookbook/static/js/bootstrap.min.js
+cookbook/static/js/npm.js
