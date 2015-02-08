@@ -4,6 +4,9 @@ from django.contrib import admin
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.conf import settings
 
+from django.views.generic import ListView
+from recipes.models import Dish
+from recipes.views import RecipeView
 
 urlpatterns = patterns('',
     # Examples:
@@ -20,6 +23,11 @@ urlpatterns = patterns('',
     url(r'^email-sent/', 'cookbook.views.validation_sent'),
     url(r'^email/$', 'cookbook.views.require_email', name='require_email'),
     url(r'^add_dish/$', 'cookbook.views.add_dish', name='add_dish'),
+    (r'^dish_list/$', ListView.as_view(model=Dish,)),
+
+    (r'^details/(?P<dish_pk>\d+)/$', RecipeView.as_view()),
+
+
 )
 
 if settings.DEBUG:
@@ -27,3 +35,4 @@ if settings.DEBUG:
         urlpatterns += static(settings.MEDIA_URL,
             document_root=settings.MEDIA_ROOT)
 urlpatterns += staticfiles_urlpatterns()
+

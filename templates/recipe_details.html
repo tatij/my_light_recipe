@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block navbar %}
+    {% include "navbar.html" %}
+{% endblock %}
+
+{% block main %}
+<link href="/static/css/dish_snippet.css" rel="stylesheet">
+<link href="/static/css/tree.css" rel="stylesheet">
+<h2> </h2>
+    <hgroup class="mb20">
+    <h2>Recipe details: {{ dish.verbose_name }}</h2>
+
+</hgroup>
+
+    <img src="
+        {% if dish.photo %}
+            {{ dish.photo.url }}
+        {% else %}
+            http://lorempixel.com/380/240/food
+        {% endif %}
+     "alt="{{ dish.verbose_name }}" class="img-thumbnail">
+
+    <div class="description"><h4>Description: {{ dish.description }}</h4></div>
+
+    <ul class="tree">
+        {%for ingredient in recipe_data %}
+            {%include "ingredient_details.html" %}
+        {%endfor%}
+    </ul>
+
+{% endblock %}

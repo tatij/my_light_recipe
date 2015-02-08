@@ -1,0 +1,12 @@
+<li> {{ingredient.ingredient}}; Unit: {{ ingredient.unit }}; Amount: {{ ingredient.amount }} Action: {% for action in ingredient.actions %} {{ action }}, {% endfor %}
+    {%if ingredient.components %}
+        <ul>
+         {%for ing in ingredient.components %}
+              {%with ingredient=ing template_name="ingredient_details.html" %}
+                   {%include template_name%}
+              {%endwith%}
+         {%endfor%}
+         </ul>
+    {%endif%}
+</li>
+

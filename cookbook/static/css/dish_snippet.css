@@ -1,0 +1,35 @@
+@import "http://fonts.googleapis.com/css?family=Roboto:300,400,500,700";
+
+.mb20 { margin-bottom: 20px; }
+
+hgroup { padding-left: 15px; border-bottom: 1px solid #ccc; }
+hgroup h1 { font: 500 normal 1.625em "Roboto",Arial,Verdana,sans-serif; color: #2a3644; margin-top: 0; line-height: 1.15; }
+hgroup h2.lead { font: normal normal 1.125em "Roboto",Arial,Verdana,sans-serif; color: #2a3644; margin: 0; padding-bottom: 10px; }
+
+.description { padding-left: 15px; }
+
+.bootshape .thumbnail {
+  color: #333333;
+  cursor: pointer;
+}
+.bootshape .thumbnail:hover {
+  border-color: #ffa800;
+  -webkit-box-shadow: 0 0 8px rgba(255, 168, 0, 0.4);
+  -moz-box-shadow: 0 0 8px rgba(255, 168, 0, 0.4);
+  box-shadow: 0 0 8px rgba(255, 168, 0, 0.4);
+}
+.bootshape .title {
+  margin-top: 15px;
+  text-transform: uppercase;
+  color: #5cb85c;
+}
+.bootshape .caption {
+  padding-top: 0;
+}
+
+.img-thumbnail:hover {
+ border-color: #ffa800;
+  -webkit-box-shadow: 0 0 8px rgba(255, 168, 0, 0.4);
+  -moz-box-shadow: 0 0 8px rgba(255, 168, 0, 0.4);
+  box-shadow: 0 0 8px rgba(255, 168, 0, 0.4);
+}

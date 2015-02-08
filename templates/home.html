@@ -6,9 +6,12 @@
 
 {% block main %}
 
+<div class="starter-template">
+
 {% if user and not user.is_anonymous %}
 
    <a class="btn btn-default pull-left" href="/add_dish/" role="button">Create new dishes</a>
+   <a class="btn btn-default pull-left" href="/dish_list/" role="button">Overview dishes</a>
 
    <h1>Welcome to our application, {% if user.get_full_name %} {{ user.get_full_name }} {% else %}{{ user.email }}{% endif %}.</h1>
    <p class="lead">Nice to meet you on our site.</p>
@@ -17,7 +20,7 @@
 
 {% endif %}
 
-
+</div>
 {% endblock %}
 
 

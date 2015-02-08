@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block navbar %}
+    {% include "navbar.html" %}
+{% endblock %}
+
+{% block main %}
+<link href="/static/css/dish_snippet.css" rel="stylesheet">
+<h2> </h2>
+<hgroup class="mb20">
+    <h1>Dishes list</h1>
+    <h2 class="lead"><strong class="text-danger">{{ object_list.count }}</strong> dishes were found</h2>
+</hgroup>
+
+<section class="thumbnails bootshape">
+<div class="row">
+    {% for dish in object_list %}
+      <div class="col-sm-6 col-md-3">
+          <div class="thumbnail">
+              <img src="
+              {% if dish.photo %}
+                {{ dish.photo.url }}
+              {%  else %}
+                  http://lorempixel.com/380/240/food
+              {%  endif %}
+                " alt="Image...">
+                  <div class="caption">
+                <h3 class="title">{{ dish.verbose_name }}</h3>
+                <p>{{ dish.description }}</p>
+                <div class="footer clearfix">
+                    <a href="/details/{{ dish.pk }}" class="btn btn-success pull-right" role="button">View</a>
+                </div>
+            </div>
+          </div>
+      </div>
+    {% endfor %}
+</div>
+</section>
+
+{% endblock %}
+
