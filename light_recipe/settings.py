@@ -42,6 +42,7 @@ INSTALLED_APPS = (
 	'recipes',
     'cookbook',
     'annoying',
+    'sorl.thumbnail',
     'social.apps.django_app.default',
 )
 

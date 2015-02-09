@@ -7,3 +7,4 @@ python-social-auth==0.2.1
 dj-database-url==0.3.0
 django-annoying==0.8.0
 pillow==2.7.0
+sorl-thumbnail==12.2

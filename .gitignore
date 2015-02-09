@@ -3,6 +3,7 @@ venv/
 local_settings.py
 *.pyc
 light_recipe/static
+light_recipe/media/*
 cookbook/static/css/bootstrap.css
 cookbook/static/css/bootstrap.css.map
 cookbook/static/css/bootstrap.min.css
@@ -12,3 +13,4 @@ cookbook/static/css/bootstrap-theme.min.css
 cookbook/static/js/bootstrap.js
 cookbook/static/js/bootstrap.min.js
 cookbook/static/js/npm.js
+

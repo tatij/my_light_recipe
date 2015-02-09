@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load thumbnail %}
 
 {% block navbar %}
     {% include "navbar.html" %}
@@ -15,7 +16,9 @@
 
     <img src="
         {% if dish.photo %}
-            {{ dish.photo.url }}
+            {% thumbnail dish.photo "360x240" crop="center" as im %}
+                {{ im.url }}" width="{{ im.width }}" height="{{ im.height }}
+            {% endthumbnail %}
         {% else %}
             http://lorempixel.com/380/240/food
         {% endif %}
@@ -30,3 +33,5 @@
     </ul>
 
 {% endblock %}
+
+

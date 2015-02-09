@@ -1,5 +1,6 @@
 from django.db import models
 from django.conf import settings
+from sorl.thumbnail import ImageField, get_thumbnail
 
 
 class Book(models.Model):
@@ -22,7 +23,7 @@ class Dish(Ingredient):
     description = models.CharField(max_length=1024,
                                    blank=True, null=True)
     type = models.ForeignKey('DishType')
-    photo = models.ImageField(null=True, blank=True)
+    photo = ImageField(null=True, blank=True)
 
     def __str__(self):
         return self.verbose_name
