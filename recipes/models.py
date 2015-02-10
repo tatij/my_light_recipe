@@ -1,11 +1,14 @@
 from django.db import models
 from django.conf import settings
-from sorl.thumbnail import ImageField, get_thumbnail
+from sorl.thumbnail import ImageField
 
 
 class Book(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL)
     name = models.CharField(max_length=128)
+
+    def __str__(self):
+        return self.name
 
 
 class Ingredient(models.Model):
